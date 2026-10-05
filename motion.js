@@ -7,10 +7,10 @@ setTimeout(() => document.getElementById("boot")?.classList.add("hide"), 1400);
 const progress = document.getElementById("progress");
 const hero = document.getElementById("hero-img");
 const pin = document.querySelector(".pin");
-const track = document.getElementById("track");
+const hall = document.getElementById("hall");
 const sticky = pin?.querySelector(".sticky");
 const dots = [...document.querySelectorAll("#dots i")];
-const hint = document.querySelector(".hint");
+const caps = [...document.querySelectorAll(".cap")];
 
 function maxScroll() {
   return Math.max(1, document.documentElement.scrollHeight - innerHeight);
@@ -28,20 +28,14 @@ function frame() {
   if (progress) progress.style.width = `${(y / maxScroll()) * 100}%`;
   if (hero && !reduce) hero.style.transform = `translate3d(0, ${Math.min(y, innerHeight) * 0.18}px, 0)`;
 
-  if (pin && track && sticky && !narrow() && !reduce) {
+  if (pin && hall && sticky && !narrow() && !reduce) {
     const p = pinProgress();
-    const slides = [...track.querySelectorAll(".slide")];
-    const n = slides.length || 1;
-    const x = p * (n - 1);
-    slides.forEach((s, i) => {
-      const t = Math.min(1, Math.max(0, x - i));
-      s.style.zIndex = String(n - i);
-      s.style.clipPath = `inset(0 ${t * 100}% 0 0)`;
-      s.style.transform = `scale(${1 + t * 0.06})`;
-    });
-    const slide = Math.min(dots.length - 1, Math.round(x));
-    dots.forEach((d, i) => d.classList.toggle("on", i === slide));
-    if (hint) hint.style.opacity = p < 0.06 ? "1" : "0";
+    const maxX = Math.max(0, hall.offsetWidth - sticky.clientWidth);
+    hall.style.transform = `translate3d(${-p * maxX}px,-50%,0)`;
+    const n = caps.length || 1;
+    const idx = Math.min(n - 1, Math.round(p * (n - 1)));
+    caps.forEach((c, i) => c.classList.toggle("on", i === idx));
+    dots.forEach((d, i) => d.classList.toggle("on", i === idx));
   }
 }
 
@@ -57,6 +51,7 @@ addEventListener(
   { passive: true }
 );
 addEventListener("resize", frame);
+hall?.addEventListener("load", frame);
 frame();
 
 (async function () {
