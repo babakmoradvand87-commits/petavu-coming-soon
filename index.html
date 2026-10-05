@@ -3,14 +3,78 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>پتاوو</title>
+  <title>پتاوو — شبکهٔ حرفه‌ای صنعت پت و اسب</title>
+  <meta name="description" content="زیرساخت ارتباط، کشف و همکاری میان کلینیک، پت‌شاپ، تولیدکننده، واردکننده و فعالان صنعت اسب.">
+  <link rel="canonical" href="https://petavu.ir/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="tokens.css">
 </head>
 <body>
-  <div id="app"><main><p class="muted">در حال بارگذاری…</p></main></div>
-  <script src="assets/supabase.js"></script>
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+  <header class="top">
+    <div class="wrap top-inner">
+      <div class="mark">PETAVU</div>
+      <nav class="nav">
+        <a href="#for">مخاطب</a>
+        <a href="#cats">صنعت</a>
+        <a href="#net">شبکه</a>
+        <a href="https://shop.petavu.ir/">بازار</a>
+        <a class="btn ghost" href="https://panel.petavu.ir/">ورود به شبکه</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">INDUSTRY NETWORK · نسخهٔ ۱</p>
+      <h1>جایی برای ارتباط حرفه‌ای در صنعت پت و اسب</h1>
+      <p class="lead">پتاوو فروشگاه خانگی نیست. زیرساخت معرفی، کشف و همکاری میان کسب‌وکارهای این صنعت است.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://panel.petavu.ir/#/signup">عضویت در پتاوو</a>
+        <a class="btn ghost" href="https://panel.petavu.ir/">ورود به شبکه</a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <h2>صنعت، نه ویترین خرده‌فروشی</h2>
+      <p class="lead">کلینیک، پت‌شاپ، تولیدکننده، واردکننده، عمده‌فروش و باشگاه سوارکاری روی یک شبکه به هم می‌رسند — با پروفایل عمومی جدا از فضای کار داخلی.</p>
+    </div>
+  </section>
+  <section id="for">
+    <div class="wrap">
+      <h2>پتاوو برای چه کسانی است؟</h2>
+      <div class="grid" id="who"></div>
+    </div>
+  </section>
+  <section id="cats">
+    <div class="wrap">
+      <h2>دسته‌های صنعت</h2>
+      <div class="grid" id="cats-grid"></div>
+    </div>
+  </section>
+  <section id="net">
+    <div class="wrap">
+      <h2>کسب‌وکارهای شبکه</h2>
+      <p class="muted">فقط پروفایل‌های منتشرشده. داده از پایگاه می‌آید، نه از فایل.</p>
+      <div class="grid" id="biz"></div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <h2>فضای کار و بازرگانی جدا هستند</h2>
+      <div class="grid">
+        <div class="card"><h3>پنل عضو</h3><p class="muted">میز کار کسب‌وکار. نسخهٔ ۱: ثبت و مدیریت پروفایل.</p></div>
+        <div class="card"><h3>فروشگاه</h3><p class="muted">کاتالوگ B2B جدا از سایت معرفی.</p></div>
+        <div class="card"><h3>کنترل پلتفرم</h3><p class="muted">انتشار و نظارت — نه دکمهٔ مخفی در سایت.</p></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn" href="https://panel.petavu.ir/#/signup">عضویت در پتاوو</a>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><div class="wrap">PETAVU · petavu.ir · v1</div></footer>
+  <script src="supabase.js"></script>
+  <script src="env.js"></script>
+  <script src="client.js"></script>
+  <script src="website.js"></script>
 </body>
 </html>
