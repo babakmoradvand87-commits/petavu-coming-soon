@@ -1,33 +1,34 @@
-const who = [
-  ["پت‌شاپ", "خرده‌فروشی تخصصی"],
-  ["کلینیک دامپزشکی", "خدمات درمان"],
-  ["باشگاه و اسب", "نگهداری و آموزش"],
-  ["تولیدکننده", "ساخت خوراک و کالا"],
-  ["واردکننده / عمده", "تأمین زنجیره"],
-  ["برند و خدمات", "عرضهٔ تخصصی"],
-];
-document.getElementById("who").innerHTML = who
-  .map(([t, s]) => `<article class="card"><h3>${t}</h3><p class="muted">${s}</p></article>`)
-  .join("");
-document.getElementById("cats-grid").innerHTML = who
-  .map(([t]) => `<article class="card"><h3>${t}</h3></article>`)
-  .join("");
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!reduce) {
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("on")),
+    { threshold: 0.16 }
+  );
+  document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+} else {
+  document.querySelectorAll(".rv").forEach((el) => el.classList.add("on"));
+}
 
-(async function load() {
+(async function () {
   const box = document.getElementById("biz");
+  if (!box || !window.petavuData) {
+    if (box) box.innerHTML = "";
+    return;
+  }
   try {
     const { data, error } = await petavuData.businesses.published();
     if (error) throw error;
     if (!data || !data.length) {
-      box.innerHTML = `<p class="muted">هنوز پروفایل منتشرشده‌ای نیست.</p>`;
+      box.innerHTML = `<p class="sub">هنوز پروفایل منتشرشده‌ای نیست.</p>`;
       return;
     }
     box.innerHTML = data
       .map(
-        (b) => `<a class="card" href="#b-${b.slug}"><h3>${b.name}</h3><p class="muted">${b.city || ""} — ${b.kind}</p><p class="muted">${b.description || ""}</p></a>`
+        (b, i) =>
+          `<a href="https://panel.petavu.ir/"><span class="num">${String(i + 1).padStart(2, "0")}</span><strong>${b.name}</strong><span class="sub">${b.city || b.kind}</span></a>`
       )
       .join("");
-  } catch (e) {
-    box.innerHTML = `<p class="err">خواندن شبکه ممکن نشد.</p>`;
+  } catch {
+    box.innerHTML = `<p class="sub">شبکه در دسترس نیست.</p>`;
   }
 })();
