@@ -71,7 +71,7 @@ frame();
     const { data, error } = await petavuData.businesses.published();
     if (error) throw error;
     if (!data?.length) {
-      box.innerHTML = `<p class="lead">هنوز کسب‌وکار منتشرشده‌ای در شبکه نیست. اولین معرفی می‌تواند از آن شما باشد.</p>`;
+      box.innerHTML = `<p class="lead">هنوز کسب‌وکار منتشرشده‌ای در شبکهٔ پت و اسب نیست. اولین معرفی می‌تواند از آن شما باشد.</p>`;
       return;
     }
     box.innerHTML = data
