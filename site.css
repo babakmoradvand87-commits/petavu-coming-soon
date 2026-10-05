@@ -33,10 +33,15 @@ h2{font-size:clamp(1.7rem,3.6vw,3rem);line-height:1.15;margin:10px 0 16px;max-wi
 .list{margin:28px 0 0;padding:0;border-top:1px solid var(--line)}
 .list li{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);list-style:none}
 .list span{color:var(--dim)}
-.pin{height:400vh;position:relative}
-.pin .sticky{position:sticky;top:0;height:100svh;overflow:hidden}
-.track{display:flex;height:100%;width:500%;will-change:transform}
-.slide{width:20%;height:100%;padding:18vh 6vw 10vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative}
+.pin{height:500vh;position:relative;direction:ltr}
+.pin .sticky{position:sticky;top:0;height:100svh;overflow:hidden;direction:ltr}
+.track{display:flex;flex-direction:row;height:100%;width:max-content;will-change:transform;transform:translate3d(0,0,0)}
+.slide{flex:0 0 100vw;width:100vw;height:100%;padding:18vh 6vw 10vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative}
+.slide .s{direction:rtl;text-align:right}
+.dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+.dots i{width:7px;height:7px;border-radius:50%;background:rgba(244,239,230,.28);display:block}
+.dots i.on{background:var(--gold)}
+.hint{position:absolute;bottom:48px;right:6vw;z-index:3;color:var(--gold);font-size:.78rem;letter-spacing:.14em;direction:rtl;transition:opacity .35s}
 .slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.38}
 .slide .s{position:relative;z-index:1;max-width:36rem}
 .slide h3{font-size:clamp(1.8rem,4vw,3.2rem);margin:8px 0 10px}
@@ -65,5 +70,6 @@ h2{font-size:clamp(1.7rem,3.6vw,3rem);line-height:1.15;margin:10px 0 16px;max-wi
   .pin{height:auto}
   .pin .sticky{position:relative;height:auto}
   .track{width:100%;flex-direction:column;transform:none!important}
-  .slide{width:100%;min-height:78svh}
+  .slide{flex:none;width:100%;height:auto;min-height:78svh}
+  .dots,.hint{display:none}
 }

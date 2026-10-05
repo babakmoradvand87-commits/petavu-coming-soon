@@ -1,50 +1,56 @@
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const touch = matchMedia("(pointer: coarse)").matches;
+const narrow = () => matchMedia("(max-width: 820px)").matches;
 
-window.addEventListener("load", () => {
-  document.getElementById("boot")?.classList.add("hide");
-});
-setTimeout(() => document.getElementById("boot")?.classList.add("hide"), 1600);
+window.addEventListener("load", () => document.getElementById("boot")?.classList.add("hide"));
+setTimeout(() => document.getElementById("boot")?.classList.add("hide"), 1400);
 
 const progress = document.getElementById("progress");
 const hero = document.getElementById("hero-img");
 const pin = document.querySelector(".pin");
 const track = document.getElementById("track");
-const mobile = matchMedia("(max-width: 820px)").matches;
+const sticky = pin?.querySelector(".sticky");
+const dots = [...document.querySelectorAll("#dots i")];
+const hint = document.querySelector(".hint");
 
-let target = 0, current = 0, ticking = false;
-function maxY() {
-  return document.documentElement.scrollHeight - innerHeight;
+function maxScroll() {
+  return Math.max(1, document.documentElement.scrollHeight - innerHeight);
 }
-function onScroll() {
-  target = scrollY;
-  if (reduce || touch) apply(target);
-  else if (!ticking) {
-    ticking = true;
-    requestAnimationFrame(tick);
+
+function pinProgress() {
+  if (!pin || !sticky) return 0;
+  const start = pin.offsetTop;
+  const travel = Math.max(1, pin.offsetHeight - innerHeight);
+  return Math.min(1, Math.max(0, (scrollY - start) / travel));
+}
+
+function frame() {
+  const y = scrollY;
+  if (progress) progress.style.width = `${(y / maxScroll()) * 100}%`;
+  if (hero && !reduce) hero.style.transform = `translate3d(0, ${Math.min(y, innerHeight) * 0.18}px, 0)`;
+
+  if (pin && track && sticky && !narrow() && !reduce) {
+    const p = pinProgress();
+    const maxX = Math.max(0, track.scrollWidth - sticky.clientWidth);
+    track.style.transform = `translate3d(${-p * maxX}px,0,0)`;
+    const slide = Math.min(dots.length - 1, Math.round(p * (dots.length - 1)));
+    dots.forEach((d, i) => d.classList.toggle("on", i === slide));
+    if (hint) hint.style.opacity = p < 0.04 ? "1" : "0";
   }
 }
-function tick() {
-  current += (target - current) * 0.12;
-  if (Math.abs(target - current) < 0.4) current = target;
-  apply(current);
-  if (current !== target) requestAnimationFrame(tick);
-  else ticking = false;
-}
-function apply(y) {
-  const m = maxY() || 1;
-  if (progress) progress.style.width = `${Math.min(100, (y / m) * 100)}%`;
-  if (hero && !reduce) hero.style.transform = `translate3d(0, ${y * 0.22}px, 0)`;
-  if (pin && track && !mobile && !reduce) {
-    const r = pin.getBoundingClientRect();
-    const total = pin.offsetHeight - innerHeight;
-    const gone = Math.min(Math.max(-r.top, 0), total);
-    const p = total ? gone / total : 0;
-    track.style.transform = `translate3d(${p * -80}%,0,0)`;
-  }
-}
-addEventListener("scroll", onScroll, { passive: true });
-onScroll();
+
+let raf = 0;
+addEventListener(
+  "scroll",
+  () => {
+    if (!raf) raf = requestAnimationFrame(() => {
+      raf = 0;
+      frame();
+    });
+  },
+  { passive: true }
+);
+addEventListener("resize", frame);
+frame();
 
 (async function () {
   const box = document.getElementById("biz");
