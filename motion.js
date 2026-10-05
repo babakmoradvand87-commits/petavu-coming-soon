@@ -71,7 +71,7 @@ frame();
     const { data, error } = await petavuData.businesses.published();
     if (error) throw error;
     if (!data?.length) {
-      box.innerHTML = `<p class="lead">هنوز پروفایل منتشرشده‌ای نیست.</p>`;
+      box.innerHTML = `<p class="lead">هنوز کسب‌وکار منتشرشده‌ای در شبکه نیست. اولین معرفی می‌تواند از آن شما باشد.</p>`;
       return;
     }
     box.innerHTML = data
@@ -81,6 +81,6 @@ frame();
       )
       .join("");
   } catch {
-    box.innerHTML = `<p class="lead">شبکه در دسترس نیست.</p>`;
+    box.innerHTML = `<p class="lead">فهرست کسب‌وکارها الان در دسترس نیست. کمی بعد دوباره سر بزنید.</p>`;
   }
 })();
