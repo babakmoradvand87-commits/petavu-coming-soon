@@ -43,7 +43,7 @@ function frame() {
     const s = scenes[idx];
     if (copyBox && copyBox.dataset.i !== String(idx)) {
       copyBox.dataset.i = String(idx);
-      copyBox.innerHTML = `<p class="n"><span class="ico"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#${s[0]}"/></svg></span></p><p class="host">${s[1]}</p><h3>${s[2]}</h3><p class="lead">${s[3]}</p>`;
+      copyBox.innerHTML = `<p class="n"><span class="ico"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#${s[0]}"/></svg></span></p><h3>${s[1]}</h3><p class="lead">${s[2]}</p>`;
     }
     dots.forEach((d, i) => d.classList.toggle("on", i === idx));
   }
