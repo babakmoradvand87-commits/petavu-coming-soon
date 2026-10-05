@@ -23,18 +23,30 @@ function pinProgress() {
   return Math.min(1, Math.max(0, (scrollY - start) / travel));
 }
 
+function sizeSlides() {
+  if (!track || !sticky || narrow()) return;
+  const w = sticky.clientWidth;
+  [...track.children].forEach((s) => {
+    s.style.flex = `0 0 ${w}px`;
+    s.style.width = `${w}px`;
+  });
+}
+
 function frame() {
   const y = scrollY;
   if (progress) progress.style.width = `${(y / maxScroll()) * 100}%`;
   if (hero && !reduce) hero.style.transform = `translate3d(0, ${Math.min(y, innerHeight) * 0.18}px, 0)`;
 
   if (pin && track && sticky && !narrow() && !reduce) {
+    sizeSlides();
     const p = pinProgress();
-    const maxX = Math.max(0, track.scrollWidth - sticky.clientWidth);
+    const slides = track.children.length || 1;
+    const w = sticky.clientWidth;
+    const maxX = Math.max(0, (slides - 1) * w);
     track.style.transform = `translate3d(${-p * maxX}px,0,0)`;
-    const slide = Math.min(dots.length - 1, Math.round(p * (dots.length - 1)));
+    const slide = Math.min(dots.length - 1, Math.round(p * (slides - 1)));
     dots.forEach((d, i) => d.classList.toggle("on", i === slide));
-    if (hint) hint.style.opacity = p < 0.04 ? "1" : "0";
+    if (hint) hint.style.opacity = p < 0.06 ? "1" : "0";
   }
 }
 
