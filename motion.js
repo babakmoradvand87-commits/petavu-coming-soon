@@ -10,7 +10,13 @@ const pin = document.querySelector(".pin");
 const hall = document.getElementById("hall");
 const sticky = pin?.querySelector(".sticky");
 const dots = [...document.querySelectorAll("#dots i")];
-const caps = [...document.querySelectorAll(".cap")];
+const copyBox = document.getElementById("hall-copy");
+const scenes = [
+  ["petavu.ir", "درِ صنعت", "ورود به همان سالن. سگ کنار در؛ شبکه از اینجا شروع می‌شود."],
+  ["panel.petavu.ir", "میز کار", "چند قدم داخل. میز عضو و گربه؛ کسب‌وکار زیر نظر خودتان."],
+  ["adminpanel.petavu.ir", "ادارهٔ شبکه", "همان راهرو، پشت شیشه اسب. کل صنعت از این زاویه دیده می‌شود."],
+  ["shop · adminshop", "بازار", "انتهای سالن: گونی و زین. معامله و اداره‌اش در ادامهٔ همین فضا."],
+];
 
 function maxScroll() {
   return Math.max(1, document.documentElement.scrollHeight - innerHeight);
@@ -31,10 +37,14 @@ function frame() {
   if (pin && hall && sticky && !narrow() && !reduce) {
     const p = pinProgress();
     const maxX = Math.max(0, hall.offsetWidth - sticky.clientWidth);
-    hall.style.transform = `translate3d(${-p * maxX}px,-50%,0)`;
-    const n = caps.length || 1;
+    hall.style.transform = `translate3d(${-p * maxX}px,0,0)`;
+    const n = scenes.length;
     const idx = Math.min(n - 1, Math.round(p * (n - 1)));
-    caps.forEach((c, i) => c.classList.toggle("on", i === idx));
+    const s = scenes[idx];
+    if (copyBox && copyBox.dataset.i !== String(idx)) {
+      copyBox.dataset.i = String(idx);
+      copyBox.innerHTML = `<p class="host">${s[0]}</p><h3>${s[1]}</h3><p class="lead">${s[2]}</p>`;
+    }
     dots.forEach((d, i) => d.classList.toggle("on", i === idx));
   }
 }
