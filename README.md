@@ -1,5 +1,4 @@
-# PETAVU coming-soon
+# PETAVU static + Supabase
 
-صفحهٔ عمومی «به‌زودی» برای `petavu.ir`. بدون پنل، بک‌اند یا دادهٔ حساب.
-
-میزبان: GitHub Pages. اپ کامل PETAVU (Node + Postgres) اینجا اجرا نمی‌شود.
+فرانت استاتیک GitHub Pages. احراز هویت و داده روی پروژهٔ Supabase.
+کلید anon عمومی است؛ service_role در این مخزن نیست.
