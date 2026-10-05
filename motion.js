@@ -12,10 +12,10 @@ const sticky = pin?.querySelector(".sticky");
 const dots = [...document.querySelectorAll("#dots i")];
 const copyBox = document.getElementById("hall-copy");
 const scenes = [
-  ["petavu.ir", "چهرهٔ صنعت", "اینجا صنعت خودش را معرفی می‌کند. عضویت از همین نقطه آغاز می‌شود."],
-  ["panel.petavu.ir", "میز کار شما", "پروفایل، تیم و وضعیت کسب‌وکار — فقط در اختیار شما."],
-  ["adminpanel.petavu.ir", "ادارهٔ شبکه", "عضویت و انتشار با استاندارد صنعت؛ جدا از فضای اعضا."],
-  ["shop.petavu.ir", "بازار صنف", "تأمین پت‌شاپ، کلینیک و اصطبل. معامله جدا از صفحهٔ معرفی."],
+  ["i-gate", "petavu.ir", "چهرهٔ صنعت", "اینجا صنعت خودش را معرفی می‌کند. عضویت از همین نقطه آغاز می‌شود."],
+  ["i-desk", "panel.petavu.ir", "میز کار شما", "پروفایل، تیم و وضعیت کسب‌وکار — فقط در اختیار شما."],
+  ["i-admin", "adminpanel.petavu.ir", "ادارهٔ شبکه", "عضویت و انتشار با استاندارد صنعت؛ جدا از فضای اعضا."],
+  ["i-market", "shop.petavu.ir", "بازار صنف", "تأمین پت‌شاپ، کلینیک و اصطبل. معامله جدا از صفحهٔ معرفی."],
 ];
 
 function maxScroll() {
@@ -43,7 +43,7 @@ function frame() {
     const s = scenes[idx];
     if (copyBox && copyBox.dataset.i !== String(idx)) {
       copyBox.dataset.i = String(idx);
-      copyBox.innerHTML = `<p class="host">${s[0]}</p><h3>${s[1]}</h3><p class="lead">${s[2]}</p>`;
+      copyBox.innerHTML = `<p class="n"><span class="ico"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#${s[0]}"/></svg></span></p><p class="host">${s[1]}</p><h3>${s[2]}</h3><p class="lead">${s[3]}</p>`;
     }
     dots.forEach((d, i) => d.classList.toggle("on", i === idx));
   }
