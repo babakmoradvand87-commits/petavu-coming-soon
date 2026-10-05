@@ -12,10 +12,10 @@ const sticky = pin?.querySelector(".sticky");
 const dots = [...document.querySelectorAll("#dots i")];
 const copyBox = document.getElementById("hall-copy");
 const scenes = [
-  ["petavu.ir", "درِ صنعت", "ورود به همان سالن. سگ کنار در؛ شبکه از اینجا شروع می‌شود."],
-  ["panel.petavu.ir", "میز کار", "چند قدم داخل. میز عضو و گربه؛ کسب‌وکار زیر نظر خودتان."],
-  ["adminpanel.petavu.ir", "ادارهٔ شبکه", "همان راهرو، پشت شیشه اسب. کل صنعت از این زاویه دیده می‌شود."],
-  ["shop · adminshop", "بازار", "انتهای سالن: گونی و زین. معامله و اداره‌اش در ادامهٔ همین فضا."],
+  ["petavu.ir", "چهرهٔ صنعت", "اینجا صنعت خودش را معرفی می‌کند. عضویت از همین نقطه آغاز می‌شود."],
+  ["panel.petavu.ir", "میز کار شما", "پروفایل، تیم و وضعیت کسب‌وکار — فقط در اختیار شما."],
+  ["adminpanel.petavu.ir", "ادارهٔ شبکه", "عضویت و انتشار با استاندارد صنعت؛ جدا از فضای اعضا."],
+  ["shop.petavu.ir", "بازار صنف", "تأمین پت‌شاپ، کلینیک و اصطبل. معامله جدا از صفحهٔ معرفی."],
 ];
 
 function maxScroll() {
@@ -71,7 +71,7 @@ frame();
     const { data, error } = await petavuData.businesses.published();
     if (error) throw error;
     if (!data?.length) {
-      box.innerHTML = `<p class="lead">هنوز کسب‌وکار منتشرشده‌ای در شبکهٔ پت و اسب نیست. اولین معرفی می‌تواند از آن شما باشد.</p>`;
+      box.innerHTML = `<p class="lead">هنوز نامی منتشر نشده. اولین می‌تواند کسب‌وکار شما باشد.</p>`;
       return;
     }
     box.innerHTML = data
@@ -81,6 +81,6 @@ frame();
       )
       .join("");
   } catch {
-    box.innerHTML = `<p class="lead">فهرست کسب‌وکارها الان در دسترس نیست. کمی بعد دوباره سر بزنید.</p>`;
+    box.innerHTML = `<p class="lead">فهرست الان در دسترس نیست. کمی بعد دوباره سر بزنید.</p>`;
   }
 })();
