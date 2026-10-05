@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 36" role="img" aria-label="PETAVU">
+  <defs>
+    <linearGradient id="cu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0d9a4"/>
+      <stop offset="48%" stop-color="#c9a45a"/>
+      <stop offset="100%" stop-color="#7a4e1e"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#cu)">
+    <!-- P -->
+    <rect x="0" y="4" width="5.2" height="28"/>
+    <path d="M5.2 4h9.4c5.8 0 9.6 3.2 9.6 8.4 0 5.2-3.8 8.4-9.6 8.4H5.2V4zm5.2 4.4v8h4.1c2.7 0 4.4-1.5 4.4-4s-1.7-4-4.4-4H10.4z"/>
+    <!-- E -->
+    <rect x="30.4" y="4" width="5.2" height="28"/>
+    <rect x="30.4" y="4" width="16.8" height="4.4"/>
+    <rect x="30.4" y="15.8" width="13.4" height="4.2"/>
+    <rect x="30.4" y="27.6" width="16.8" height="4.4"/>
+    <!-- T -->
+    <rect x="52.4" y="4" width="20.2" height="4.4"/>
+    <rect x="59.9" y="4" width="5.2" height="28"/>
+    <!-- A as gate -->
+    <path d="M77.2 32L86.6 4h5.6l9.4 28h-5.6l-1.7-5.2H84.5L82.8 32h-5.6zm9.2-9.4h8l-4-12.2-4 12.2z"/>
+    <!-- V -->
+    <path d="M106.2 4h5.6L121.4 32h-5.8l-6.6-20.2L102.4 32h-5.8L106.2 4z"/>
+    <!-- U -->
+    <path d="M126.2 4h5.2v16.6c0 4.8 2.5 7.4 6.8 7.4s6.8-2.6 6.8-7.4V4h5.2v16.8c0 8.2-4.8 12.4-12 12.4s-12-4.2-12-12.4V4z"/>
+  </g>
+</svg>
